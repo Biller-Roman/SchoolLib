@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace schoollib_wpf.Models
 {
-    class Reader
+    public class Reader
     {
         [Key]
         public int Id { get; set; }
@@ -16,5 +16,11 @@ namespace schoollib_wpf.Models
         public string? Patronymic { get; set; }
         public int Step { get; set; }
         public string? Parallel { get; set; }
+        public ICollection<AttachedBook> Books { get; set; }
+
+        public Reader()
+        {
+            Books = new List<AttachedBook>();
+        }
     }
 }

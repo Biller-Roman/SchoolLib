@@ -74,27 +74,27 @@ namespace schoollib_wpf
 
         private void readerListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            var item = readerListView.SelectedItem as Reader;
-            if (item != null)
+            var reader = readerListView.SelectedItem as Reader;
+            if (reader != null)
             {
                 ReaderWindow readerWindow = new ReaderWindow();
                 readerWindow.Title = "Изменение данных о читателе";
-                readerWindow.surnameTextBox.Text = item.Surname;
-                readerWindow.nameTextBox.Text = item.Name;
-                readerWindow.patronymicTextBox.Text = item.Patronymic;
-                readerWindow.stepComboBox.Text = item.Step.ToString();
-                readerWindow.parallelComboBox.Text = item.Parallel;
+                readerWindow.surnameTextBox.Text = reader.Surname;
+                readerWindow.nameTextBox.Text = reader.Name;
+                readerWindow.patronymicTextBox.Text = reader.Patronymic;
+                readerWindow.stepComboBox.Text = reader.Step.ToString();
+                readerWindow.parallelComboBox.Text = reader.Parallel;
                 if (readerWindow.ShowDialog() == true)
                 {
                     using (ApplicationContext context = new ApplicationContext())
                     {
-                        item.Surname = readerWindow.surnameTextBox.Text;
-                        item.Name = readerWindow.nameTextBox.Text;
-                        item.Patronymic = readerWindow.patronymicTextBox.Text;
-                        item.Step = int.Parse(readerWindow.stepComboBox.Text);
-                        item.Parallel = readerWindow.parallelComboBox.Text;
+                        reader.Surname = readerWindow.surnameTextBox.Text;
+                        reader.Name = readerWindow.nameTextBox.Text;
+                        reader.Patronymic = readerWindow.patronymicTextBox.Text;
+                        reader.Step = int.Parse(readerWindow.stepComboBox.Text);
+                        reader.Parallel = readerWindow.parallelComboBox.Text;
 
-                        context.Readers.Entry(item).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                        context.Readers.Entry(reader).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                         context.SaveChanges();
                     }
                 }
@@ -105,8 +105,8 @@ namespace schoollib_wpf
 
         private void deleteReaderButton_Click(object sender, RoutedEventArgs e)
         {
-            var item = readerListView.SelectedItem as Reader;
-            if (item == null)
+            var reader = readerListView.SelectedItem as Reader;
+            if (reader == null)
             {
                 // Show error about missing item selected for deletion
                 return;
@@ -114,7 +114,7 @@ namespace schoollib_wpf
 
             using (ApplicationContext context = new ApplicationContext())
             {
-                context.Readers.Remove(item);
+                context.Readers.Remove(reader);
                 context.SaveChanges();
             }
 

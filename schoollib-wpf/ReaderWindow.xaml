@@ -58,7 +58,7 @@
 
             <TextBlock Text="Книги:"/>
 
-            <ListView Grid.Row="1">
+            <ListView x:Name="attachedBookList" Grid.Row="1">
                 <ListView.Resources>
                     <Style TargetType="{x:Type GridViewColumnHeader}">
                         <Setter Property="HorizontalContentAlignment" Value="Left"/>
@@ -66,15 +66,15 @@
                 </ListView.Resources>
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn DisplayMemberBinding="{Binding}" Width="360">Название</GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding}" Width="180">Автор</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Title}" Width="360">Название</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Author}" Width="180">Автор</GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>
 
             <StackPanel Orientation="Vertical" Margin="8,0,0,0" Grid.Column="1" Grid.Row="1">
-                <Button Content="Добавить" Width="80"/>
-                <Button Content="Удалить" Width="80" Margin="0,8,0,0"/>
+                <Button x:Name="addBookButton" Content="Добавить" Width="80" Click="addBookButton_Click"/>
+                <Button x:Name="deleteBookButton" Content="Удалить" Width="80" Margin="0,8,0,0" Click="deleteBookButton_Click"/>
             </StackPanel>
         </Grid>
 

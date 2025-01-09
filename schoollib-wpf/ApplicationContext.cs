@@ -11,9 +11,12 @@ namespace schoollib_wpf
     class ApplicationContext : DbContext
     {
         public DbSet<Reader> Readers { get; set; }
+        public DbSet<Book> Books { get; set; }
+        public DbSet<AttachedBook> AttachedBooks { get; set; }
 
         public ApplicationContext()
         {
+            // Database.EnsureDeleted();
             // Database.EnsureCreated();
         }
 
